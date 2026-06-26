@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISRO BAH 2026 — Master Brief & Strategy (Team Syntax Error)</title>
+<style>
+:root{
+  --navy:#0a1029; --navy2:#111a3d; --panel:#16204a; --panel2:#1d2a5e;
+  --orange:#ff7a18; --orange2:#ff9b45; --blue:#4aa8ff; --cyan:#79e0ff;
+  --text:#e8edff; --muted:#a9b4d8; --line:#2a386f;
+  --good:#37d39a; --warn:#ffcf5c; --bad:#ff6b6b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--text);font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .4em}
+h2{font-size:1.7rem;color:#fff;border-left:5px solid var(--orange);padding-left:12px;margin-top:0}
+h3{font-size:1.2rem;color:var(--cyan)}
+.section{padding:34px 0;border-top:1px solid var(--line)}
+.hero{background:linear-gradient(135deg,#0a1029 0%,#1a1340 60%,#3a1d0e 100%);padding:46px 0 34px;border-bottom:3px solid var(--orange)}
+.badge{display:inline-block;background:rgba(255,122,24,.16);color:var(--orange2);border:1px solid var(--orange);border-radius:30px;padding:3px 14px;font-size:.78rem;font-weight:600;letter-spacing:.5px;margin-bottom:14px}
+.hero h1{font-size:2.5rem;color:#fff;margin-bottom:8px}
+.hero p{color:var(--muted);max-width:760px}
+.grid{display:grid;gap:16px}
+.facts{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.fact{ text-align:center}
+.fact .n{font-size:1.5rem;font-weight:700;color:var(--orange2)}
+.fact .l{font-size:.82rem;color:var(--muted)}
+.count{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.count .box{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px;padding:10px 16px;text-align:center;min-width:120px}
+.count .box .big{font-size:1.4rem;font-weight:700;color:#fff}
+.count .box.urgent .big{color:var(--orange2)}
+.count .box .lbl{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel2);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+.tl{position:relative;margin-left:8px;padding-left:22px;border-left:2px solid var(--orange)}
+.tl .ev{margin-bottom:14px;position:relative}
+.tl .ev::before{content:'';position:absolute;left:-29px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--orange)}
+.tl .d{font-weight:700;color:var(--orange2)}
+.pill{display:inline-block;font-size:.72rem;padding:2px 9px;border-radius:20px;font-weight:600;margin:2px 3px 2px 0}
+.p-good{background:rgba(55,211,154,.16);color:var(--good);border:1px solid var(--good)}
+.p-warn{background:rgba(255,207,92,.16);color:var(--warn);border:1px solid var(--warn)}
+.p-bad{background:rgba(255,107,107,.16);color:var(--bad);border:1px solid var(--bad)}
+.p-blue{background:rgba(74,168,255,.16);color:var(--blue);border:1px solid var(--blue)}
+.rank{display:flex;align-items:center;gap:10px;margin:0 0 6px}
+.rank .medal{font-size:1.4rem}
+.score{font-weight:700;color:var(--orange2)}
+.ps{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0;page-break-inside:avoid}
+.ps img{max-width:100%;border-radius:10px;border:1px solid var(--line);margin:10px 0;display:block}
+.ps .num{display:inline-block;background:var(--orange);color:#1a0e00;font-weight:800;border-radius:8px;padding:2px 12px;margin-right:8px}
+.snap{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0;font-size:.86rem}
+.snap div{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:8px;padding:7px 11px}
+.snap b{color:var(--cyan)}
+.k{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin-top:12px;font-weight:600}
+ul{margin:.3em 0 .6em;padding-left:20px}
+li{margin:.18em 0}
+.callout{background:linear-gradient(135deg,rgba(255,122,24,.12),rgba(74,168,255,.08));border:1px solid var(--orange);border-radius:12px;padding:16px 20px;margin:16px 0}
+.toc{columns:2;gap:24px}
+.toc a{display:block;padding:3px 0}
+.foot{color:var(--muted);font-size:.85rem;padding:26px 0 50px;text-align:center}
+@media(max-width:720px){.facts{grid-template-columns:repeat(2,1fr)}.snap{grid-template-columns:1fr}.toc{columns:1}}
+@media print{
+  body{background:#fff;color:#111;font-size:11.5px}
+  .hero{background:#0a1029 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.ps,.panel,.callout{background:#f4f6fb !important;border-color:#ccd}
+  h2{color:#0a1029}.section{border-color:#ccd}
+  a{color:#1456b8}
+  .ps{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">ISRO × HACK2SKILL · 3rd EDITION · NATIONAL LEVEL</span>
+    <h1>Bharatiya Antariksh Hackathon 2026</h1>
+    <p><b>Master Brief &amp; Strategy Pack</b> for Team <b>Syntax Error</b> — every problem statement, the official idea-submission rules, a scored shortlist, and a day-by-day plan to get selected. Prepared 25 June 2026.</p>
+    <div class="count">
+      <div class="box urgent"><div class="big">6 days</div><div class="lbl">to Idea deadline (1 Jul)</div></div>
+      <div class="box"><div class="big">25 days</div><div class="lbl">to Shortlist (20 Jul)</div></div>
+      <div class="box"><div class="big">~6 weeks</div><div class="lbl">to Grand Finale (6–7 Aug)</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="section">
+  <h2>1 · Snapshot — the facts that matter</h2>
+  <div class="grid facts">
+    <div class="card fact"><div class="n">3–4</div><div class="l">Team members (you have 4)</div></div>
+    <div class="card fact"><div class="n">Students</div><div class="l">UG/PG/PhD, India only · Free</div></div>
+    <div class="card fact"><div class="n">15</div><div class="l">Problem statements</div></div>
+    <div class="card fact"><div class="n">30 hrs</div><div class="l">On-site grand finale</div></div>
+  </div>
+  <div class="callout">
+    <b>What the idea phase actually is:</b> NOT a prototype. You submit a <b>10-slide concept deck</b> on the <b>mandatory official template</b>. Judges shortlist on <b>ideation &amp; approach</b>. In 2025, ~140 teams were shortlisted from this phase, then narrowed to 30 finalists. So slide clarity, a sharp USP, a believable architecture, and ISRO/national alignment win here — not code.
+  </div>
+  <p><b>Rewards:</b> ISRO recognition, <b>potential ISRO internship</b>, ISRO-scientist mentorship for shortlisted teams, II-AC travel reimbursed for finalists. <b>Contact:</b> support+isrobah2026@hack2skill.com · <a href="https://discord.gg/KMKtbxBJpW">Discord</a> (note: per-PS channels are public — never discuss our idea there).</p>
+</div>
+
+<div class="section">
+  <h2>2 · Timeline &amp; your runway</h2>
+  <div class="tl">
+    <div class="ev"><span class="d">10 Jun 2026</span> — Registration &amp; Idea submission opens ✅ (you're registered)</div>
+    <div class="ev"><span class="d">15–16 Jun 2026</span> — Problem-statement explainer sessions 1 &amp; 2 (recordings worth checking)</div>
+    <div class="ev"><span class="d">1 Jul 2026, 11:59 PM IST</span> — <b style="color:#ff9b45">IDEA SUBMISSION CLOSES</b> ← our gate (6 days)</div>
+    <div class="ev"><span class="d">20 Jul 2026</span> — Final shortlist announced</div>
+    <div class="ev"><span class="d">21 Jul 2026</span> — Induction session for selected teams</div>
+    <div class="ev"><span class="d">6–7 Aug 2026</span> — Grand Finale (30-hr on-site build)</div>
+  </div>
+  <p><b>Read:</b> the deck only has to be excellent in 6 days. If shortlisted (20 Jul), there's a <b>~2.5-week induction-to-finale runway (21 Jul → 6 Aug)</b> to pre-build datasets, baseline models and a dashboard skeleton so the 30 hours are spent on the wow-factor. Given you work long hours, we plan for an ambitious build — the risk to manage is <b>data readiness</b>, not effort.</p>
+</div>
+
+<div class="section">
+  <h2>3 · The mandatory idea-submission template (10 slides)</h2>
+  <p>You must use <a href="https://docs.google.com/presentation/d/1FsK8Z2D2AN9gu9SJqqHbd93L9OG0CFYXgIqTZxGhnqk/export/pptx">this exact deck</a> — "It is mandatory to use the same template." Structure:</p>
+  <table>
+    <tr><th>#</th><th>Slide</th><th>What judges want to see</th></tr>
+    <tr><td>1</td><td>Title</td><td>Team name, team leader, chosen Problem Statement</td></tr>
+    <tr><td>2</td><td>Team Members</td><td>Leader + 3 members, each Name + College</td></tr>
+    <tr><td>3</td><td>Opportunity</td><td><b>How different from existing ideas? · How will it solve the problem? · USP.</b> The differentiation slide — make it sharp.</td></tr>
+    <tr><td>4</td><td>Features</td><td>List of features the solution offers (+ a visual)</td></tr>
+    <tr><td>5</td><td>Process flow / Use-case</td><td>A clean flow or use-case diagram</td></tr>
+    <tr><td>6</td><td>Wireframes / Mockups</td><td>Optional — but a dashboard mock is a strong edge for us</td></tr>
+    <tr><td>7</td><td>Architecture</td><td>End-to-end architecture diagram of the solution</td></tr>
+    <tr><td>8</td><td>Technologies</td><td>The concrete stack (models, libraries, data, deploy)</td></tr>
+    <tr><td>9</td><td>Estimated cost</td><td>Optional — compute/data cost, shows maturity</td></tr>
+    <tr><td>10</td><td>Thank You</td><td>Close</td></tr>
+  </table>
+  <p class="k">Our advantage</p>
+  <p>Slides 3, 5, 6, 7 reward exactly what your team is good at — product framing, clean architecture, and a dashboard mock. We will over-deliver on those.</p>
+</div>
+
+<div class="section">
+  <h2>4 · Scored shortlist — all 15 ranked for <i>us</i></h2>
+  <p>Weighted for <b>Team Syntax Error</b>: Dataset readiness 30% (your make-or-break concern), Team fit 25% (full-stack + AI + product/dashboards), USP &amp; demo 20% (what the idea phase rewards), 30-hr feasibility 15%, ISRO/national impact 10%. Scores out of 5.</p>
+  <table>
+    <tr><th>Rank</th><th>PS</th><th>Title (short)</th><th>Data</th><th>Fit</th><th>USP</th><th>Feas</th><th>Impact</th><th>Score</th></tr>
+    <tr><td>🥇 1</td><td>PS4</td><td>Route Resilience — road extraction + graph criticality</td><td>4.5</td><td>5</td><td>5</td><td>5</td><td>4.5</td><td class="score">4.80</td></tr>
+    <tr><td>🥈 2</td><td>PS12</td><td>Satellite frame interpolation (optical flow)</td><td>5</td><td>4.5</td><td>4</td><td>4.5</td><td>4</td><td class="score">4.50</td></tr>
+    <tr><td>🥉 3</td><td>PS5</td><td>AI Digital Twin of India's climate</td><td>4</td><td>5</td><td>4.5</td><td>4</td><td>5</td><td class="score">4.45</td></tr>
+    <tr><td>4</td><td>PS3</td><td>Surface AQI &amp; HCHO hotspots</td><td>4.5</td><td>4</td><td>3.5</td><td>4</td><td>5</td><td class="score">4.15</td></tr>
+    <tr><td>5</td><td>PS1</td><td>Urban heat mitigation (AI/ML)</td><td>5</td><td>4</td><td>3</td><td>4</td><td>4</td><td class="score">4.10</td></tr>
+    <tr><td>6</td><td>PS13</td><td>Air-gapped predictive MPLS copilot</td><td>4</td><td>3.5</td><td>5</td><td>3</td><td>4</td><td class="score">3.93</td></tr>
+    <tr><td>6</td><td>PS14</td><td>Forecast energetic particle radiation (GEO)</td><td>4.5</td><td>3.5</td><td>3.5</td><td>4</td><td>4</td><td class="score">3.93</td></tr>
+    <tr><td>8</td><td>PS7</td><td>Exoplanet detection from light curves</td><td>4.5</td><td>3.5</td><td>3.5</td><td>4</td><td>3.5</td><td class="score">3.88</td></tr>
+    <tr><td>9</td><td>PS10</td><td>Infrared image colorization</td><td>4.5</td><td>3.5</td><td>3.5</td><td>3.5</td><td>3.5</td><td class="score">3.80</td></tr>
+    <tr><td>10</td><td>PS2</td><td>Generative-AI cloud removal (LISS-IV)</td><td>3.5</td><td>4</td><td>4</td><td>3.5</td><td>4</td><td class="score">3.78</td></tr>
+    <tr><td>11</td><td>PS6</td><td>Crop type + moisture stress + irrigation</td><td>3.5</td><td>4</td><td>3.5</td><td>3.5</td><td>4.5</td><td class="score">3.73</td></tr>
+    <tr><td>12</td><td>PS15</td><td>Solar flare nowcast/forecast (Aditya-L1)</td><td>3.5</td><td>3.5</td><td>4</td><td>3.5</td><td>4.5</td><td class="score">3.70</td></tr>
+    <tr><td>13</td><td>PS11</td><td>Cross-modal satellite image retrieval</td><td>3.5</td><td>3.5</td><td>3.5</td><td>3.5</td><td>3.5</td><td class="score">3.50</td></tr>
+    <tr><td>14</td><td>PS8</td><td>Lunar subsurface ice (Chandrayaan-2)</td><td>2.5</td><td>3</td><td>4.5</td><td>3</td><td>5</td><td class="score">3.35</td></tr>
+    <tr><td>15</td><td>PS9</td><td>Wavefront reconstruction (SH-WFS)</td><td>3.5</td><td>2.5</td><td>3.5</td><td>3</td><td>3.5</td><td class="score">3.18</td></tr>
+  </table>
+  <p class="k">Why the bottom ones score low for us (not bad PSc, just bad fit)</p>
+  <p>PS8 (lunar ice) and PS15 (solar flares) are the most <i>prestigious</i>, but their data is gated (Chandrayaan-2 data only handed out at the finale; Aditya-L1 SoLEXS/HEL1OS via the niche ISSDC-PRADAN portal) — that's your "data brings us down" risk. PS9 needs C-level real-time optimisation in an adaptive-optics niche, far from your product strengths.</p>
+</div>
+
+<div class="section">
+  <h2>5 · Top 3 — deep dive (pick one of these)</h2>
+
+  <div class="ps">
+    <div class="rank"><span class="medal">🥇</span><h3 style="margin:0">PS4 — Route Resilience: Occlusion-Robust Road Extraction &amp; Graph-Theoretic Criticality</h3></div>
+    <span class="pill p-good">Data: open &amp; ready</span><span class="pill p-blue">Killer dashboard demo</span><span class="pill p-good">Built for a 30-hr hackathon</span><span class="pill p-good">Strong, defensible USP</span>
+    <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-4.webp" alt="PS4 visual">
+    <p><b>The idea in one line:</b> "See-through-occlusions" road extraction from satellite imagery → heal it into a routable graph → find the city's single points of failure → let a planner click a junction to simulate a flood/closure and instantly see rerouting &amp; travel-time blow-up.</p>
+    <div class="snap">
+      <div><b>Why it wins the idea phase:</b> the PS itself is engineered for a 30-hr build and hands you a clear novel USP (Resilience Index, "Gatekeeper Nodes", node-ablation what-if).</div>
+      <div><b>Why it fits you:</b> CV model + graph logic + an interactive Streamlit/Leaflet dashboard = exactly your full-stack + AI + product wheelhouse (CareerOS-style).</div>
+      <div><b>Data readiness (high):</b> SpaceNet, DeepGlobe, OpenSatMap (pretraining), <b>OSM auto-generates ground-truth road masks</b>, Sentinel-2 (10 m) &amp; Resourcesat LISS-IV (5.8 m) open via Bhoonidhi. Cartosat-3 given at finale.</div>
+      <div><b>Differentiation:</b> most teams stop at a road mask. You deliver topology + a resilience simulator — a decision-support tool, not a segmentation demo.</div>
+    </div>
+    <p class="k">Winning angle for slide 3 (USP)</p>
+    <p>"Existing road-extraction breaks under tree canopy/shadows and outputs disconnected masks useless for routing. We add (1) a transformer/attention model that infers continuity under occlusion, (2) graph-healing (MST + Disjoint-Set) to close gaps along natural trajectories, and (3) a <b>Resilience Index</b> + interactive stress-test no other team will have." Map this to ISRO's NNRMS / Cartosat-Resourcesat downstream-utility mandate.</p>
+  </div>
+
+  <div class="ps">
+    <div class="rank"><span class="medal">🥈</span><h3 style="margin:0">PS12 — Fill in the Frames: AI/ML Optical-Flow Frame Interpolation for Satellite Imagery</h3></div>
+    <span class="pill p-good">Data: fully open</span><span class="pill p-blue">Best "wow" animation demo</span><span class="pill p-good">Pretrained models exist</span>
+    <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-12.webp" alt="PS12 visual">
+    <p><b>The idea in one line:</b> turn INSAT's 30-min satellite frames into smooth 15- / 7.5-min "video" by AI-interpolating intermediate frames — sharper near-real-time tracking of cyclones, storms and fires, with a side-by-side time-lapse dashboard.</p>
+    <div class="snap">
+      <div><b>Why it wins:</b> the demo is a jaw-dropping before/after time-lapse — judges <i>see</i> the value instantly. Clean, objective metrics (SSIM/PSNR/MSE).</div>
+      <div><b>Why it fits you:</b> fine-tune a pretrained RIFE/Super-SloMo (fast) + build the web visualisation — light on data wrangling, heavy on the product polish you're good at.</div>
+      <div><b>Data readiness (highest):</b> GOES-19 ABI on an open AWS bucket, Himawari open, INSAT-3DS/3DR TIR via MOSDAC. Train on GOES (high cadence), apply to INSAT.</div>
+      <div><b>Differentiation:</b> satellite-specific optical flow tuned to cloud motion (vs generic video models that blur fast non-linear cloud dynamics).</div>
+    </div>
+    <p class="k">Risk to manage</p>
+    <p>Lowest data risk of the three; main effort is a clean .nc pipeline + a crisp metrics story. Excellent "safe but impressive" choice.</p>
+  </div>
+
+  <div class="ps">
+    <div class="rank"><span class="medal">🥉</span><h3 style="margin:0">PS5 — AI-Powered Digital Twin of India's Climate</h3></div>
+    <span class="pill p-warn">Data: open, some parsing</span><span class="pill p-blue">Biggest vision &amp; narrative</span><span class="pill p-good">Atmanirbhar / national impact</span>
+    <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-5.webp" alt="PS5 visual">
+    <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-5-flow-diagram.webp" alt="PS5 flow diagram">
+    <p><b>The idea in one line:</b> a living virtual replica of India's climate that ingests IMD + INSAT data, predicts rainfall/temperature for a pilot region, and lets you run "what-if" scenarios on an interactive map dashboard.</p>
+    <div class="snap">
+      <div><b>Why it wins:</b> the "Digital Twin + Atmanirbhar Bharat" narrative is the most quotable, mission-aligned story in the whole set — strong with ISRO judges.</div>
+      <div><b>Why it fits you:</b> map dashboard + what-if simulator + ML PoC = product-heavy, your strength. Scope to a pilot region keeps it finale-feasible.</div>
+      <div><b>Data readiness (good):</b> IMD gridded rainfall/temp are open (binary .grd — needs a parser), INSAT LST/SST/rainfall via MOSDAC (free account). Reliable but budget a day for IMD format handling.</div>
+      <div><b>Differentiation:</b> frame it as a true <i>twin</i> (live state + scenario engine), not just a forecast model — that's the gap most teams miss.</div>
+    </div>
+    <p class="k">Risk to manage</p>
+    <p>"Digital twin" is broad — judges punish vagueness. We win by scoping hard to one pilot basin + two variables and showing a concrete what-if (e.g., "+2 °C → monsoon onset shift").</p>
+  </div>
+
+  <div class="callout">
+    <b>My recommendation:</b> <b>PS4</b> for the highest ceiling (novel, demo-rich, data-ready, perfectly on your skills) — or <b>PS12</b> if you want the lowest-risk path with the most dazzling demo. <b>PS5</b> if you want the biggest "national mission" story. Tell me which and I'll build the full 10-slide deck + architecture + dashboard mock.
+  </div>
+</div>
+
+<div class="section">
+  <h2>6 · Full problem-statement compendium (all 15, with the official images)</h2>
+  <p class="k">Images load live from the official site. To save a PDF <b>with</b> these images embedded, open this file in your browser and press <b>Ctrl+P → Save as PDF</b>.</p>
+  <div class="toc">
+    <a href="#ps1">PS1 · Urban Heat Mitigation (AI/ML)</a>
+    <a href="#ps2">PS2 · Generative-AI Cloud Removal (LISS-IV)</a>
+    <a href="#ps3">PS3 · Surface AQI &amp; HCHO Hotspots</a>
+    <a href="#ps4">PS4 · Route Resilience (roads + graph)</a>
+    <a href="#ps5">PS5 · AI Digital Twin of India's Climate</a>
+    <a href="#ps6">PS6 · Crop Type + Moisture + Irrigation</a>
+    <a href="#ps7">PS7 · Exoplanet Detection (light curves)</a>
+    <a href="#ps8">PS8 · Lunar Subsurface Ice (Chandrayaan-2)</a>
+    <a href="#ps9">PS9 · Wavefront Reconstruction (SH-WFS)</a>
+    <a href="#ps10">PS10 · Infrared Image Colorization</a>
+    <a href="#ps11">PS11 · Cross-Modal Satellite Retrieval</a>
+    <a href="#ps12">PS12 · Satellite Frame Interpolation</a>
+    <a href="#ps13">PS13 · Air-Gapped MPLS Copilot</a>
+    <a href="#ps14">PS14 · Forecast GEO Particle Radiation</a>
+    <a href="#ps15">PS15 · Solar Flare Nowcast (Aditya-L1)</a>
+  </div>
+</div>
+<div class="ps" id="ps1">
+  <h3><span class="num">PS1</span>Optimizing Urban Heat Mitigation &amp; Cooling Strategies via AI/ML</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-1.webp" alt="PS1">
+  <div class="snap"><div><b>Domain:</b> Geospatial climate ML</div><div><b>Data readiness:</b> <span class="pill p-good">High · all open</span></div><div><b>Data:</b> Landsat-8 &amp; ECOSTRESS LST, Sentinel-2 LULC, ERA5 + CPCB met, OSM/GHSL urban form</div><div><b>Fit:</b> geo + physics-informed ML + dashboard</div></div>
+  <p><b>Goal:</b> a physics-informed geospatial AI system to find urban heat hotspots, quantify drivers (land use, morphology, vegetation, atmosphere), model LST dynamics, and simulate cooling interventions (green/cool roofs, albedo, tree cover, water bodies) with an estimated °C reduction per option.</p>
+  <p><b>Outcomes:</b> heat-stress maps, driver attribution, validated AIML model, scenario evaluation, and an optimal intervention plan (type · placement · °C reduction). Optional tools: SOLWEIG, InVEST.</p>
+</div>
+
+<div class="ps" id="ps2">
+  <h3><span class="num">PS2</span>Generative-AI Cloud Removal &amp; Reconstruction for LISS-IV Imagery</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-2.webp" alt="PS2">
+  <div class="snap"><div><b>Domain:</b> Generative AI / CV</div><div><b>Data readiness:</b> <span class="pill p-warn">Medium · LISS-IV pairs tricky</span></div><div><b>Data:</b> LISS-IV cloudy/clear (Bhoonidhi); optional Sentinel-1 SAR, Sentinel-2, DEM</div><div><b>Fit:</b> diffusion/GAN/transformer + strong visuals</div></div>
+  <p><b>Goal:</b> a Generative-AI framework that removes clouds &amp; reconstructs surface in LISS-IV imagery using spatial + spectral + temporal cues, preserving fine detail and spectral consistency. Explore diffusion models, GANs, transformers, or multimodal fusion (SAR/optical/temporal).</p>
+  <p><b>Outcomes:</b> automated cloud-free, analysis-ready LISS-IV products; spatial/spectral consistency; a deployable prototype; comparative assessment of GenAI architectures.</p>
+</div>
+
+<div class="ps" id="ps3">
+  <h3><span class="num">PS3</span>Surface AQI &amp; HCHO Hotspot Identification over India</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-3.webp" alt="PS3">
+  <div class="snap"><div><b>Domain:</b> Atmospheric RS + DL</div><div><b>Data readiness:</b> <span class="pill p-good">High · mostly open via GEE</span></div><div><b>Data:</b> INSAT-3D AOD (MOSDAC), Sentinel-5P TROPOMI, CPCB ground, MODIS/VIIRS fire (FIRMS), ERA5/MERRA-2</div><div><b>Fit:</b> CNN-LSTM pipelines + national-impact story (NCAP)</div></div>
+  <p><b>Obj-1:</b> derive a satellite-based <b>surface AQI</b> over India (CNN/LSTM/CNN-LSTM fusing columnar satellite + CPCB + met data). <b>Obj-2:</b> map <b>HCHO hotspots</b> during biomass-burning seasons, identify source regions (Indo-Gangetic Plain, fire zones) and fire→HCHO transport.</p>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-3-flow-diagram.webp" alt="PS3 AQI flow">
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-3-obj2-flow-diagram.webp" alt="PS3 HCHO flow">
+  <p><b>Eval:</b> RMSE/R/MAE for predicted AQI; hotspot clarity, multi-source integration, scientific interpretation, visualization, innovation.</p>
+</div>
+
+<div class="ps" id="ps4">
+  <h3><span class="num">PS4</span>Route Resilience — Occlusion-Robust Road Extraction &amp; Graph-Theoretic Criticality</h3>
+  <span class="pill p-good">🥇 Top pick for us</span>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-4.webp" alt="PS4">
+  <div class="snap"><div><b>Domain:</b> CV + graph theory + geospatial</div><div><b>Data readiness:</b> <span class="pill p-good">High · open + auto OSM ground truth</span></div><div><b>Data:</b> Sentinel-2 (10 m), Resourcesat LISS-IV (5.8 m), SpaceNet/DeepGlobe/OpenSatMap, OSM; Cartosat-3 at finale</div><div><b>Fit:</b> CV model + graph + interactive dashboard = your wheelhouse</div></div>
+  <p><b>Goal:</b> (1) transformer/attention model that infers road continuity under tree cover, shadows &amp; clutter; (2) heal fragmented masks into a routable weighted graph (MST + Disjoint-Set); (3) find "Gatekeeper Nodes" via betweenness centrality; (4) node-ablation stress test producing a <b>Resilience Index</b>; (4-phase incl. a Streamlit/Leaflet dashboard).</p>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-4-flow-diagram.webp" alt="PS4 flow">
+  <p><b>Eval:</b> IoU/Dice (with occlusion-recall), generalisation across terrains, connectivity ratio after healing, topological accuracy vs OSM, relaxed-IoU. Aligned to ISRO NNRMS / Cartosat-Resourcesat downstream utility.</p>
+</div>
+
+<div class="ps" id="ps5">
+  <h3><span class="num">PS5</span>AI-Powered Digital Twin of India's Climate</h3>
+  <span class="pill p-blue">🥉 Shortlisted for us</span>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-5.webp" alt="PS5">
+  <div class="snap"><div><b>Domain:</b> Climate AI + simulation</div><div><b>Data readiness:</b> <span class="pill p-warn">Good · IMD binary parsing</span></div><div><b>Data:</b> IMD gridded rainfall/temp (0.25°/1°), INSAT LST/SST/rainfall (MOSDAC); Bhuvan/MOSDAC/NICES</div><div><b>Fit:</b> map dashboard + what-if simulator + ML PoC</div></div>
+  <p><b>Goal:</b> a high-fidelity virtual replica of India's climate fusing satellite + IMD + reanalysis to produce near-real-time states and short-term rainfall/temperature predictions for a pilot region, with an interactive map dashboard and a "what-if" scenario module.</p>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-5-flow-diagram.webp" alt="PS5 flow">
+  <p><b>Outcomes:</b> PoC digital twin, AI prediction, visualization dashboard, scenario simulation, scalable national framework. Strong "Atmanirbhar Bharat" narrative.</p>
+</div>
+
+<div class="ps" id="ps6">
+  <h3><span class="num">PS6</span>AI-Driven Crop Type, Moisture-Stress Detection &amp; Irrigation Advisory</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-6.webp" alt="PS6">
+  <div class="snap"><div><b>Domain:</b> Agri RS (optical + SAR)</div><div><b>Data readiness:</b> <span class="pill p-warn">Medium · ground-truth labels needed</span></div><div><b>Data:</b> LISS-III/AWiFS/Sentinel-2/Landsat/MODIS, EOS-04/Sentinel-1 SAR, rainfall/ET, command-area, crop ground truth</div><div><b>Fit:</b> RF/XGBoost + LSTM/U-Net + dashboard</div></div>
+  <p><b>Goal:</b> automated crop-type mapping from multi-temporal signatures, phenology-aware moisture-stress detection across growth stages, and 8-day crop-water-deficit → irrigation-advisory maps for canal command areas. Supports PMKSY, Digital Agriculture Mission, PMFBY.</p>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-6-flow-diagram.webp" alt="PS6 flow">
+  <p><b>Eval:</b> crop accuracy &gt;85% + Kappa; growth-stage-aware stress consistent with indices; credible advisory layers.</p>
+</div>
+
+<div class="ps" id="ps7">
+  <h3><span class="num">PS7</span>AI-Enabled Detection of Exoplanets from Noisy Light Curves</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-7.webp" alt="PS7">
+  <div class="snap"><div><b>Domain:</b> Astro time-series ML</div><div><b>Data readiness:</b> <span class="pill p-good">High · TESS open + curated set</span></div><div><b>Data:</b> TESS raw light curves (MAST, ~20–30k/sector) + provided curated training set</div><div><b>Fit:</b> ML classification + signal fitting (less product/dashboard)</div></div>
+  <p><b>Goal:</b> a pipeline that finds periodic dips in noisy, crowded-field light curves and classifies them as transits vs eclipsing binaries vs blends vs other; reports SNR/significance; and fits transit depth, period &amp; duration. Deliver a ≤3-page methodology report.</p>
+  <p><b>Eval:</b> detection &amp; classification accuracy, parameter accuracy, method, visualization/clarity. (Note: TESS is NASA data — less ISRO-mission specific.)</p>
+</div>
+
+<div class="ps" id="ps8">
+  <h3><span class="num">PS8</span>Subsurface Ice Detection in Lunar South-Pole PSRs (Chandrayaan-2)</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-8.webp" alt="PS8">
+  <div class="snap"><div><b>Domain:</b> Planetary radar RS + path planning</div><div><b>Data readiness:</b> <span class="pill p-bad">Low · data only at finale</span></div><div><b>Data:</b> Chandrayaan-2 DFSAR + OHRC (supplied during the 30-hr finale)</div><div><b>Fit:</b> GIS/radar domain-heavy; high prestige</div></div>
+  <p><b>Goal:</b> map subsurface-ice-bearing "doubly shadowed craters" using radar polarimetry (CPR &gt; 1, DOP &lt; 0.13), assess terrain/illumination to propose a safe landing site, design an optimal rover traverse, and estimate ice volume in the top ~5 m.</p>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-8-flow-diagram.webp" alt="PS8 flow">
+  <p><b>Note:</b> highest prestige (Chandrayaan-2, ISRU), but the core dataset is only handed out at the finale, so the idea phase is methodology — a data-readiness risk you flagged.</p>
+</div>
+<div class="ps" id="ps9">
+  <h3><span class="num">PS9</span>Wavefront Reconstruction &amp; Turbulence Characterization (SH-WFS)</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-9.webp" alt="PS9">
+  <div class="snap"><div><b>Domain:</b> Adaptive optics / real-time DSP</div><div><b>Data readiness:</b> <span class="pill p-warn">Provided · niche format</span></div><div><b>Data:</b> SH-WFS .bmp frame time-series + MLA &amp; DM parameters (provided)</div><div><b>Fit:</b> C-level optimization, AO domain — far from product strengths</div></div>
+  <p><b>Goal:</b> from Shack-Hartmann spot fields, centroid spots, reconstruct wavefront phase maps, derive turbulence stats (Fried parameter r₀, coherence time τ₀) and compute deformable-mirror actuator maps (Fried geometry, inter-actuator coupling), fast enough for ~10 ms atmospheric coherence.</p>
+  <p><b>Eval:</b> phase-map reconstruction quality, turbulence parameter accuracy, computational speed.</p>
+</div>
+
+<div class="ps" id="ps10">
+  <h3><span class="num">PS10</span>Infrared Image Colorization &amp; Enhancement</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-10.webp" alt="PS10">
+  <div class="snap"><div><b>Domain:</b> CV image-to-image translation</div><div><b>Data readiness:</b> <span class="pill p-good">High · Landsat open</span></div><div><b>Data:</b> Landsat-8/9 thermal+IR &amp; RGB (USGS)</div><div><b>Fit:</b> CycleGAN/Pix2Pix + visuals</div></div>
+  <p><b>Goal:</b> an end-to-end pipeline that super-resolves/sharpens monochrome IR satellite imagery and colorizes IR→realistic RGB while preserving semantic integrity (water→blue, forest→green) and boosting downstream detection/segmentation.</p>
+  <p><b>Eval:</b> PSNR, SSIM, FID, inference time, and visual inspection for hallucination-free output.</p>
+</div>
+
+<div class="ps" id="ps11">
+  <h3><span class="num">PS11</span>Cross-Modal Satellite Image Retrieval (Multi-Sensor)</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-11.webp" alt="PS11">
+  <div class="snap"><div><b>Domain:</b> Multimodal representation learning</div><div><b>Data readiness:</b> <span class="pill p-warn">Medium · aligning modalities</span></div><div><b>Data:</b> multi-sensor RS (optical RGB, multispectral, SAR) + optional land-cover labels</div><div><b>Fit:</b> ViT/Siamese/contrastive + FAISS</div></div>
+  <p><b>Goal:</b> a retrieval system with a shared embedding space for same-modal (optical↔optical, SAR↔SAR) and cross-modal (optical↔SAR, optical↔MS) retrieval; returns ranked top-5/top-10 with low per-query time. Pretrained/foundation models allowed.</p>
+  <p><b>Eval:</b> F1@5 &amp; F1@10 (same- and cross-modal), average retrieval time. Cross-modal weighted higher.</p>
+</div>
+
+<div class="ps" id="ps12">
+  <h3><span class="num">PS12</span>Fill in the Frames — Satellite Temporal Super-Resolution (Optical Flow)</h3>
+  <span class="pill p-good">🥈 Shortlisted for us</span>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-12.webp" alt="PS12">
+  <div class="snap"><div><b>Domain:</b> Video interpolation / DL</div><div><b>Data readiness:</b> <span class="pill p-good">Highest · GOES open on AWS</span></div><div><b>Data:</b> GOES-19 ABI Ch-13 (NOAA AWS), INSAT-3DS/3DR TIR1 (MOSDAC), Himawari-8 (.nc/.h5)</div><div><b>Fit:</b> fine-tune RIFE/Super-SloMo + web time-lapse dashboard</div></div>
+  <p><b>Goal:</b> optical-flow + DL frame interpolation to synthesize intermediate satellite frames, lifting INSAT temporal resolution 30→15→7.5 min for sharper tracking of cyclones/storms/fires; dashboard showing original vs interpolated time-lapse animations; .nc in/out.</p>
+  <p><b>Eval:</b> SSIM/PSNR/MSE/FSIM vs ground truth (e.g., GOES-19), web GUI quality, INSAT-3DS visual quality.</p>
+</div>
+
+<div class="ps" id="ps13">
+  <h3><span class="num">PS13</span>Air-Gapped Predictive Copilot for Secure MPLS Operations</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-13.webp" alt="PS13">
+  <div class="snap"><div><b>Domain:</b> Networks + ML + offline LLM/RAG</div><div><b>Data readiness:</b> <span class="pill p-good">Self-generated (controllable)</span></div><div><b>Data:</b> simulated SD-WAN/MPLS telemetry (EVE-NG/GNS3/Containerlab): SNMP, syslog, NetFlow, BGP/OSPF events</div><div><b>Fit:</b> systems-heavy; great for an infra/LLM team, big build</div></div>
+  <p><b>Goal:</b> an offline, air-gapped AI NOC copilot that predicts faults <i>before</i> impact (time-series + graph anomaly detection) and explains them in natural language via a self-hosted quantized LLM (Mistral 7B / LLaMA-3 8B / Phi-3) with RAG over runbooks &amp; incidents — zero outbound network.</p>
+  <p><b>Eval (weighted):</b> Technical merit 35%, copilot effectiveness 35%, air-gap/offline compliance 20%, documentation 10%. Highest USP but heaviest infra scope.</p>
+</div>
+
+<div class="ps" id="ps14">
+  <h3><span class="num">PS14</span>Forecasting Energetic Particle Radiation for GEO Satellites</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-14.webp" alt="PS14">
+  <div class="snap"><div><b>Domain:</b> Space-weather time-series ML</div><div><b>Data readiness:</b> <span class="pill p-good">Provided · 11 yrs</span></div><div><b>Data:</b> GOES &gt;2 MeV electron flux (11 yr), Wind solar-wind (11 yr), ISRO GRASP/GSAT (1–2 yr) — all in CDF, provided</div><div><b>Fit:</b> time-series forecasting + domain reading</div></div>
+  <p><b>Goal:</b> forecast geostationary electron flux 30–45 min ahead (plus 6 h &amp; 12 h) from solar-wind drivers; read/process/visualize CDF data; build, tune and validate an AI/ML time-series model.</p>
+  <p><b>Eval:</b> solar-wind/radiation-belt understanding, correct data handling/visualization, model optimization, predicted-flux accuracy.</p>
+</div>
+
+<div class="ps" id="ps15">
+  <h3><span class="num">PS15</span>Nowcasting/Forecasting Solar Flares (Aditya-L1 Soft + Hard X-ray)</h3>
+  <img src="https://h2svision.github.io/publicAssets2/bah2026/challenge-15.webp" alt="PS15">
+  <div class="snap"><div><b>Domain:</b> Solar physics + time-series ML</div><div><b>Data readiness:</b> <span class="pill p-warn">Medium · ISSDC-PRADAN access</span></div><div><b>Data:</b> Aditya-L1 SoLEXS (L1) + HEL1OS (L1) via ISRO ISSDC PRADAN portal</div><div><b>Fit:</b> domain-heavy; high ISRO prestige (Aditya-L1)</div></div>
+  <p><b>Goal:</b> an automated pipeline that combines soft + hard X-ray light curves to <b>nowcast</b> (real-time detect/classify) flares and <b>forecast</b> them from precursor patterns with quantifiable lead time, plus an alert-visualization interface.</p>
+  <p><b>Eval:</b> low/high-class flare detection, high true-positive &amp; low false-alarm rate, lead time before flare peak.</p>
+</div>
+
+<div class="section">
+  <h2>7 · The plan — 6 days now, then ~16 days if selected</h2>
+  <p class="k">Phase A · Idea sprint (25 Jun → 1 Jul) — the only thing that matters this week is a brilliant 10-slide deck.</p>
+  <table>
+    <tr><th>Day</th><th>Action</th></tr>
+    <tr><td>Day 1 (today)</td><td>Lock the problem statement (PS4 / PS12 / PS5). I draft the full deck + architecture + flow diagram.</td></tr>
+    <tr><td>Day 2–3</td><td>Sharpen slide 3 (USP / "how different"), build a clean dashboard wireframe (slide 6) and architecture (slide 7). Verify every dataset link actually opens.</td></tr>
+    <tr><td>Day 4</td><td>Tech stack + (optional) cost slide; tighten copy; add the 2 representative visuals judges love.</td></tr>
+    <tr><td>Day 5 (30 Jun)</td><td>Internal review, proofread, export to the official template, <b>submit a day early</b> (don't trust the last-hour server).</td></tr>
+    <tr><td>1 Jul</td><td>Buffer / final submit. Deadline 11:59 PM IST.</td></tr>
+  </table>
+  <p class="k">Phase B · The wait (1 Jul → 20 Jul)</p>
+  <p>Optional head start: skim the explainer-session recordings, set up data accounts (Bhoonidhi, MOSDAC, NOAA AWS), and stub the repo so you're ready if shortlisted.</p>
+  <p class="k">Phase C · Build runway IF selected (21 Jul induction → 6 Aug finale ≈ 16 days)</p>
+  <p>This is your real project-building window — and with the hours you put in it's plenty for an ambitious PS. Plan: Week 1 — data pipeline + baseline model (e.g., PS4: U-Net/transformer road segmentation on SpaceNet/DeepGlobe, OSM ground-truth automation, graph-healing scripts). Week 2 — dashboard skeleton + integration + a rehearsed end-to-end demo. <b>Pre-build the heavy parts now so the 30 finale hours are spent on the wow-factor, not setup.</b></p>
+  <p class="k">Phase D · Grand Finale (6–7 Aug, 30 hrs on-site)</p>
+  <p>Drop in the finale-only data (e.g., Cartosat-3 for PS4 / Chandrayaan-2 for PS8), finalise the model, polish the interactive demo, and nail the presentation. Because the foundation is pre-built, you compete on polish and story — where you're strong.</p>
+  <div class="callout"><b>Bottom line on PS choice given the runway:</b> with ~16 prep days + the finale and your work ethic, an ambitious, demo-rich PS is the <i>right</i> risk — provided its data is open <i>today</i>. That points squarely to <b>PS4</b> (or PS12 for the safest dazzling demo). Avoid PSs whose data only arrives at the finale (PS8) for the idea-phase headline.</div>
+</div>
+
+</div>
+
+<div class="foot wrap">
+  Prepared for Team Syntax Error · ISRO Bharatiya Antariksh Hackathon 2026 · Sources: hack2skill.com/event/bah2026 (official site &amp; dashboard) · isro.gov.in · Generated 25 Jun 2026.
+</div>
+
+</body>
+</html>
